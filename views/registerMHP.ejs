@@ -1,0 +1,46 @@
+<% layout('layout/layout') %>
+<div class="container user-form py-5" style="background: linear-gradient(to right, lightgrey, palegoldenrod)";>
+    <br>
+    <span class="site-logo my-3">Mental Health Practitioner Registration</span>
+    <div class="row">
+        <div class="col-24 col-lg-7 offset-lg-2" style="margin-left: 20%;">
+            <form id="registerMHP" class="mt-5">
+                <div class="form-group">
+                    <input type="text" name="fullname" value="" class="form-control" placeholder="Fullname">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="username" value="" class="form-control" placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" value="" class="form-control" placeholder="example@abc.com">
+                </div>
+                <div class="form-group">
+                    <input type="password" name="password" value="" class="form-control" placeholder="Enter Password">
+                </div>
+                <div class="form-group">
+                    <input type="password" name="confirm" value="" class="form-control" placeholder="Confirm Password">
+                </div>
+                <button type="submit" name="submit">Register MHP</button>
+            </form>
+        </div>
+
+    </div>
+
+
+    <!-- Flash Message modal  -->
+
+    <div class="modal fade" id="flashModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+

@@ -1,0 +1,83 @@
+ <% layout('layout/layout') %>
+ <script src="/js/jquery.min.js"></script>
+ <script src="/js/tether.min.js"></script>
+ <script src="/js/bootstrap.min.js"></script>
+    <div class="container">
+        <div class="swipe-form col-12 col-lg-7 mt-5 mx-auto" style="margin-left: 30%;">
+            <form id="updateForm" class="py-3" STYLE="width: 100%" enctype="multipart/form-data">
+              <button id="swipe" class="bg-btn hidden-lg-up swipe_btn" style="font-size:1em; float:left;"><i class="fa fa-align-right swipe_btn"></i></button>
+                <div class="row" style="clear:both;">
+                     <div class="col-12 col-md-4" style="text-align:center">
+                      <% if(user.image && !isImage){ console.log("uid"+user._id); %>
+                          <img src="../images/profile/<%=user.image%>" class="ml-2 mb-2" alt="<%= user.fullname %>">
+                      <% } else { %>
+                          <img src="<%= user.image %>" class="ml-2 mb-2" alt="<%= user.fullname %>">
+                      <% } %>
+                    </div>
+                    <div class="col-12 col-md-8">
+                        <p class="lead">Pick your 'Full name' and 'Username' as 'Anonymous' to remain Anonymous</p>
+                        <span><%= user.fullname %></span>
+                        <b><%= user.username%></b>
+                        <p class="lead"><%= user.bio %></p>
+                    </div>
+
+                    <div class="col-11 col-md-12 mx-auto">
+                        <div id="flash" class="my-2"></div>
+                        <input type="text" name="fullname" value="<%= user.fullname %>" placeholder="Your name" class="form-control">
+
+                        <input type="text" name="username" value="<%= user.username %>" placeholder="Your Username" class="form-control">
+                        <input type="text" name="role" value="<%= user.role %>" placeholder="Your Role" class="form-control">
+
+                        <textarea name="bio" class="form-control" maxlength="120" placeholder="About yourself"><%= user.bio %></textarea>
+
+                        <button type="button" class="bg-btn btn-save" name="button">Save</button>
+                    </div>
+                </div>
+                <div class="col-12 col-md-10 mx-auto mt-3 py-5" style="border-top:1px solid #dcdcdc;">
+                    <a class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" data-deleteid= "<%= user._id%>" style="color:#ffffff;">DELETE MY PROFILE</a>
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Delete Confirmation</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Are you sure you want to delete your Steel Smiling Account?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary"
+                                        name='gotoNode'
+                                        data-arg1='<%= user._id%>' id="nodeGoto">Delete</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div id="menu-panel" class="py-5 index">
+                <a href="#" data-user='{"username":"<%= user.username %>","fullname":"<%= user.fullname %>","email":"<%= user.email%>","bio":"<%= user.bio %>","image":"<%= user.image %>"}' data-get="infoForm" id="loadForm" class="my-3">Profile</a>
+                <a href="#" data-user='{"id":"<%= user._id %>"}'  data-get="passwordchange" id="loadForm" class="my-3">Reset Password</a>
+            </div>
+        </div>
+    </div>
+
+<script>
+    document.getElementById("nodeGoto").addEventListener("click", function() {
+        let arg1 = event.target.getAttribute('data-arg1');
+        console.log(arg1);
+        $.get("/delete/"+arg1, function(data, status){
+            if(status=='success'){
+                window.location.href = "/logout ";
+            }
+        });
+    }, false);</script>
+
+     <!-- Panels  -->
+      <% include partials/panels/panel %>

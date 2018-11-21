@@ -1,0 +1,45 @@
+<% layout('layout/layout') %>
+
+<div class="container user-form py-5" style="background: linear-gradient(to right, lightgrey, palegoldenrod)";>
+    <img src="/images/logo.jpg" width="150" height="120" alt="Steel Smiling"/>
+    <p class="lead">Join the community now to share your photos and stories.</p>
+
+    <div class="row">
+        <div class="col-12 col-lg-5 offset-lg-2">
+            <form id="referralval" class="mt-5" style="height: 280px">
+                <div class="form-group" style="margin-top: 5%">
+                    <span class="lead" style="margin-bottom: ">Validate your referral code</span>
+                    <input type="text" name="referralcode" value="" class="form-control" placeholder="Referral Code">
+                </div>
+                <button type="submit" name="submit">Validate Code</button>
+            </form>
+        </div>
+
+        <div class="col-12 col-lg-4 more">
+            <span class="or mt-3 hidden-lg-up">or</span>
+            <div class="social-options pt-2 mb-5 mx-auto">
+                <span class="lead">Already have an account ?</span>
+                <a href="/" class="btn-jump">Sign In</a>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- Flash Message modal  -->
+
+    <div class="modal fade" id="flashModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+

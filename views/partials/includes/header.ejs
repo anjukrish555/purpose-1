@@ -1,0 +1,36 @@
+  <header>
+        <a href="/home" class="site-logo mb-2"><span>Steel Smiling</span> <i class="fa fa-home"></i></a>
+        <span class="mx-3 links hidden-sm-down">
+          <span class="search-box ml-5">
+            <input type="hidden" name="sess_id" value="<%= session_id %>">
+            <input type="search" name="search"  class="form-control searchUser" placeholder="Search for a peer or practitioner" autocomplete="off">
+            <i class="fa fa-search"></i>
+            <div class="sub-panel sub-search">
+              <p class="lead py-2 px-3" style="text-align:center;color:#a9a9a9;"><i class="fa fa-search mr-3"></i>Looking for someone</p>
+            </div>
+          </span>
+          <a href="/profile/<%= session_id %>"><i class="fa fa-user-o"></i></a>
+          <a href="/messages"><i class="fa fa-envelope-open-o"></i></a>
+          <button id="sub-menu" class="fa fa-bell-o notif-btn">
+            <div class="sub-panel">
+              <ul class="notification-bar">
+              </ul>
+            </div>
+          </button>
+            <a href="/resource"><i class="fa fa-book"></i></a>
+        <a href="/donate"><i class="fa fa-dollar"></i></a>
+        </span>
+        <button class="btn-notification fa fa-bell bg-btn hidden-md-up notif-btn" style="font-size:1em;"></button>
+        <button type="button" id="sub-menu" class="notif-btn lg-setting bg-btn btn-lg-set hidden-sm-down mr-4">
+          <i class="fa fa-cog" aria-hidden="true"></i>
+          <div class="sub-panel">
+             <a href="/update">Update Information</a>
+              <a href="/refer">Refer a Friend</a>
+             <a href="/logout">Sign out</a>
+          </div>
+        </button>
+            <div id="mySidenav" class="sidenav">
+                <a href="#" id="crisis"><img src="../images/phone_icon.png" class="img-crisis"><label class="crisis">In Crisis?</label><br><label class="phone-number" style="font-size: medium"><b><center>Call 1-888-7-YOU-CAN (796-8226)</center> <center>OR</center> <center>Call 1-800-273-8255</center> </b></label></a>
+                </a>
+            </div>
+    </header>

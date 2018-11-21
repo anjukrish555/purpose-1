@@ -1,0 +1,47 @@
+<% layout('layout/layout') %>
+
+
+<div class="container user-form py-5">
+
+
+    <div class="container" style="background: linear-gradient(to right, lightgrey, palegoldenrod);>
+        <span class ="site-logo my-3">Resource Information Upload</span>
+        <!-- <div class="col-12 col-lg-4 offset-lg-2">%>  --->
+        <form id="resource-form" method="post"  class="resourceupload" enctype="multipart/form-data">
+            <div class="form-group">
+                <input type="text" name="name" value="" class="form-control" placeholder="Name of the Organization ">
+            </div>
+            <div class="form-group">
+                <input type="text" name="description" value="" class="form-control" placeholder="Information about the organization">
+            </div>
+            <div class="form-group">
+                <input type="text" name="website" value="" class="form-control" placeholder="Hyperlink to resource">
+            </div>
+            <div>
+            <select class="custom-select" name="category" id="category">
+                <option selected>Select a location:</option>
+                <option value="Pittsburgh">Pittsburgh</option>
+                <option value="Allegheny County">Allegheny County</option>
+                <option value="Pennsylvania">Pennsylvania</option>
+                <option value="Outside Pennsylvania">Outside Pennsylvania</option>
+            </select>
+            </div>
+            <div class="form-group">
+                <label for="upload" name="uploadIcon" class="px-2"><i class="fa fa-camera mr-2"></i> </label>
+                <input type="file" name="upload" class="upload">
+            </div>
+            <button type="submit" name="submit">Submit</button>
+        </form>
+         <div class="modal fade" id="flashModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-body">
+
+
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+
+    </div>
+</div>

@@ -1,0 +1,60 @@
+<% layout('layout/layout') %>
+
+
+<div class="container user-form py-5">
+    <br>
+    <%if(user.role == 'Administrator'){%>
+    <a href="/resourceupload" class="btn btn-outline-primary" style="float: right" ><span>Create Resource</span></a>
+    <%}%>
+    </br>
+    <span class="site-logo my-5">Our Resources</span>
+    <div class="col-12 col-lg-4 offset-lg-2" style="margin:0 auto;">
+        <form id="filter-resources" class="mt-5">
+            <div>
+                <select class="custom-select" name="category" id="category">
+                    <option selected>Select a location:</option>
+                    <option value="Pittsburgh">Pittsburgh</option>
+                    <option value="Allegheny County">Allegheny County</option>
+                    <option value="Pennsylvania">Pennsylvania</option>
+                    <option value="Outside Pennsylvania">Outside Pennsylvania</option>
+                </select>
+                <input class="filter" name="filter-resources" type="submit" value="Filter">
+            </div>
+        </form>
+    </div>
+    </form>
+
+    <div class="container" style="margin-top: 2%;">
+        <div class="row">
+            <% for(var i=0;i<resources.length;i++){%>
+            <div class="col-xs-12 col-sm-6 col-md-4">
+
+                <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+
+                    <div class="mainflip">
+
+                        <div class="frontside">
+                            <div class="card-custom">
+                                <div class="card-body text-center">
+                                    <img src="<%= resources[i].image %>" alt="" class="img-resources">
+                                    <div class="card-title"><b><%= resources[i].name%></b></div>
+                                    <div id="greetings" class="card-title"><textarea readonly class="resourceDesc"><%= resources[i].description%></textarea></div>
+                                    <a href ="#"  class="card-title"></a>
+                                    <a href = <%= resources[i].website%> id="singlebutton" name="singlebutton" class="btn btn-primary">
+                                        Read More!</a>
+
+                                    <br></br>         </div>
+                            </div>
+                            <br></br>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <% } %>
+
+        </div>
+    </div>
+</div>
