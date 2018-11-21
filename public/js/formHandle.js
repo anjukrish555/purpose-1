@@ -1105,58 +1105,58 @@ if(sendBtn){
 
 //chat box user list
 
-
+var ajxReq;
+var interval;
 if(users){
 
     users.forEach(user => user.addEventListener('click', function(e){
-
         let imageSrc = this.firstElementChild.currentSrc;
         let name = this.lastElementChild.innerText;
         let receiver = this.dataset.chatreceiver;
-        console.log("receiver1"+receiver);
+        console.log("receiver"+receiver);
         let sender =  this.dataset.sender;
         let countMessages  = document.querySelectorAll('#chatForm span');
         let textArea = document.querySelector('.btn-send').setAttribute('data-receiver', receiver);
         swipeChat.nextElementSibling.setAttribute('src', imageSrc);
         swipeChat.parentElement.querySelector('b').innerText = name;
-         //var uReceiver = receiver;
+        if (ajxReq != null) {
+            ajxReq = null;
+            clearInterval(interval);
+        }
+        interval = setInterval(function(){
 
-        setInterval( function() { getMessage(this.dataset.chatreceiver); }, 5000 );
+            console.log("receiver2 "+receiver);
 
-            function getMessage() {
-                console.log("receiver2" + receiver);
-                //retreive user chat
-                $.ajax({
-                    url: '/getMessage',
-                    method: 'POST',
-                    data: {receiver:receiver,sender: sender},
-                    dataType: 'json',
-
-                  beforeSend: function (http) {
-                        receiver = "";
-                    },
-                    success: function (response) {
-                        let oldMessages = document.querySelectorAll('#textArea .incoming');
-                        let messages = response.data;
-                        let data = messages.map(message => {
-                            //receiver=message.receiver;
-                            let html = `<span class="chatMsg ${sender != message.sender ? 'incoming' : 'outgoing' }">${message.message}</span>`;
-                            return html;
-                        }).join(" ");
-                        document.querySelector('#textArea').innerHTML = data;
-                        let newMessages = document.querySelectorAll('#textArea .incoming');
-                        console.log(`OLD ${oldMessages.length} NEW ${newMessages.length}`);
-                        if (oldMessages.length > 0) {
-                            if (newMessages.length > oldMessages.length) {
-                                console.log(`RING- ${newMessages.length} ${oldMessages.length}`);
-                                document.querySelector('#msg-new').play();
-                                document.querySelector('#chatForm').scrollTop = document.querySelector('#chatForm').scrollHeight;
-                            }
+            //retreive user chat
+            ajxReq = $.ajax({
+                url: '/getMessage/'+receiver,
+                method: 'POST',
+                data : {sender:sender},
+                dataType:'json',
+                /*beforeSend : function(http){
+                  receiver ="";
+                },*/
+                success: function(response){
+                    //receiver = response.receiver;
+                    let oldMessages = document.querySelectorAll('#textArea .incoming');
+                    let messages = response.data;
+                    let data = messages.map(message => {
+                        //receiver=message.receiver;
+                        let html = `<span class="chatMsg ${sender!=message.sender? 'incoming':'outgoing' }">${message.message}</span>`;
+                        return html;
+                    }).join(" ");
+                    document.querySelector('#textArea').innerHTML =  data;
+                    let newMessages = document.querySelectorAll('#textArea .incoming');
+                    if(oldMessages.length > 0){
+                        if(newMessages.length>oldMessages.length){
+                            //console.log(`RING- ${newMessages.length} ${oldMessages.length}`);
+                            //document.querySelector('#msg-new').play();
+                            document.querySelector('#chatForm').scrollTop = document.querySelector('#chatForm').scrollHeight;
                         }
                     }
-                });
-            }
-
+                }
+            });
+        },1000);
 
     }));
 
@@ -1164,7 +1164,7 @@ if(users){
 }
 
 
-/*//fetch notifications
+//fetch notifications
 
 function getNotification(){
 
@@ -1243,7 +1243,7 @@ function getNotification(){
         }
     });
 
-}*/
+}
 
 
 if(notifBtn.length > 0){
